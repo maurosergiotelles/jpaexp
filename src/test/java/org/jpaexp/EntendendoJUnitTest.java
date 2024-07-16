@@ -1,10 +1,15 @@
 package org.jpaexp;
-import org.junit.Test;
+
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class EntendendoJUnitTest {
 
+
     @Test
     public void testandoAlgo(){
-        System.out.println("fdsaf");
+        String teste = "test";
+        Assertions.assertEquals("test", teste);
     }
 }
