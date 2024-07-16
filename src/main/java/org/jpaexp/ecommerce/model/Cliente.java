@@ -4,20 +4,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.math.BigDecimal;
-
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@ToString
-public class Produto {
+public class Cliente {
 
     @Id
     private Integer id;
+
     private String nome;
-    private BigDecimal preco;
-    private String descricao;
 }

@@ -1,2 +1,4 @@
-package org.jpaexp.ecommerce.model;public class ConsultandoRegistros {
+package org.jpaexp.ecommerce.consultandoregistros;
+
+public class ConsultandoRegistros {
 }
