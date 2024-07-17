@@ -1,7 +1,6 @@
 package org.jpaexp.ecommerce.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @NoArgsConstructor
@@ -10,10 +9,15 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @Entity
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
     private Integer id;
 
     private String nome;
+
+    @Enumerated
+    private SexoCliente sexo;
+
 }

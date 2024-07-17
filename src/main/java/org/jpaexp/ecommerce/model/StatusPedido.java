@@ -1,4 +1,7 @@
 package org.jpaexp.ecommerce.model;
 
-public enum Status {
+public enum StatusPedido {
+    AGUARDANDO,
+    CANCELADO,
+    PAGO
 }

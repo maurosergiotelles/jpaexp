@@ -1,4 +1,5 @@
 package org.jpaexp.ecommerce.model;
 
-public enum StatusCartao {
+public enum StatusPagamento {
+    PROCESSANDO,CANCELADO,RECEBIDO
 }

@@ -6,7 +6,7 @@
     <persistence-unit name="Ecommerce-PU">
         <properties>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://192.168.56.101:33060/jpa-exp?createDatabaseIfNotExist=true&amp;useTimezone=true&amp;serverTimezone=UTC" />
+                      value="jdbc:mysql://192.168.56.101:33060/jpa-exp?createDatabaseIfNotExist=true&amp;useTimezone=true&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8" />
             <property name="jakarta.persistence.jdbc.user" value="root" />
             <property name="jakarta.persistence.jdbc.password" value="123" />
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

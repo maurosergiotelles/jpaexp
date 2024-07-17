@@ -1,2 +1,5 @@
-package org.jpaexp.ecommerce.model;public enum Sexo {
+package org.jpaexp.ecommerce.model;
+
+public enum SexoCliente {
+    MASCULINO,    FEMININO
 }
