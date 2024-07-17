@@ -13,7 +13,13 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     @Test
     @Order(10)
     public void inserirPrimeiroObjeto() {
-        Produto produto = new Produto(2, "Câmera Canon", new BigDecimal("5000.99"), "A melhor definicao para suas fotos.");
+
+        Produto produto = new Produto();
+        produto.setNome("Câmera Canon");
+        produto.setDescricao("A melhor definicao para suas fotos.");
+        produto.setPreco(new BigDecimal("5000.99"));
+
+
         EntityTransaction transaction = entityManager.getTransaction();
 
         transaction.begin();
@@ -28,7 +34,7 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 
         Produto produto = new Produto();
 
-        produto.setId(1);
+
         produto.setNome("fdsafdsa");
         produto.setDescricao("fdsafda");
         produto.setPreco(new BigDecimal("56.77"));

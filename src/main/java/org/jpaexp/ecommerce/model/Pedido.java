@@ -1,9 +1,6 @@
 package org.jpaexp.ecommerce.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +16,7 @@ import java.time.LocalDateTime;
 public class Pedido {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "data_pedido")
@@ -33,6 +31,10 @@ public class Pedido {
     private StatusPedido status;
 
     private BigDecimal total;
+
+    @Embedded
+    private Endereco endereco;
+
 
 
 }

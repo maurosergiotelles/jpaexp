@@ -17,7 +17,6 @@ public class Cliente {
 
     private String nome;
 
-    @Enumerated
+    @Enumerated( EnumType.STRING)
     private SexoCliente sexo;
-
 }
