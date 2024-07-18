@@ -3,6 +3,8 @@ package org.jpaexp.ecommerce.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,4 +21,9 @@ public class Cliente {
 
     @Enumerated( EnumType.STRING)
     private SexoCliente sexo;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos;
+
+
 }
