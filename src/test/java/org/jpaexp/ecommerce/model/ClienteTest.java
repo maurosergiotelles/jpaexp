@@ -13,7 +13,7 @@ public class ClienteTest extends EntityManagerTest {
         EntityTransaction transaction = entityManager.getTransaction();
         Cliente cliente = new Cliente();
 
-        cliente.setId(6);
+
         cliente.setNome("Joana");
         cliente.setSexo(SexoCliente.FEMININO);
 

@@ -66,7 +66,11 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     @Test
     @Order(13)
     public void inserirObjetoComMerge() {
-        Produto produto = new Produto(3, "Camera Canon", new BigDecimal("5000.99"), "A melhor definicao para suas fotos.");
+        Produto produto = new Produto();
+
+        produto.setNome("Camera Canon");
+        produto.setDescricao("A melhor definicao para suas fotos.");
+        produto.setPreco(new BigDecimal("5000.99"));
         EntityTransaction transaction = entityManager.getTransaction();
 
         transaction.begin();

@@ -1,7 +1,6 @@
 package org.jpaexp.ecommerce.model;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,9 +31,8 @@ public class Pedido {
     @Column(name = "data_conclusao")
     private LocalDateTime dataConclusao;
 
-    @Column(name = "nota_fiscal_id")
-    private Integer notaFiscalId;
 
+    @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
     private BigDecimal total;
@@ -42,12 +40,20 @@ public class Pedido {
     @Embedded
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "pedido", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<ItemPedido> itens = new ArrayList<>();
 
     public void addItem(ItemPedido itemPedido){
         itemPedido.setPedido(this);
         itens.add(itemPedido);
-
     }
+
+    @OneToOne(mappedBy = "pedido")
+    private PagamentoCartao pagamentoCartao;
+
+
+
+    @OneToOne(mappedBy = "pedido")
+    private NotaFiscal notaFiscal;
+
 }

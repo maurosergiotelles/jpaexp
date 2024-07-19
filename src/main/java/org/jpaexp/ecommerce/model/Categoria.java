@@ -6,6 +6,9 @@ import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @EqualsAndHashCode(of = {"id"})
@@ -19,6 +22,21 @@ public class Categoria {
 
     private String nome;
 
-    @Column(name = "categoria_pai_id")
-    private Integer categoriaPaiId;
+    @ManyToOne
+    @JoinColumn(name = "categoria_pai_id")
+    private Categoria categoriaPaiId;
+
+    @OneToMany(mappedBy = "categoriaPaiId")
+    private List<Categoria> categorias = new ArrayList<>();
+
+
+    @ManyToMany(mappedBy = "categorias")
+    private List<Produto> produtos = new ArrayList<>();
+
+    public void setCategoriaFilha(Categoria categoria){
+        categoria.setCategoriaPaiId(this);
+        categorias.add(categoria);
+    }
+
+
 }

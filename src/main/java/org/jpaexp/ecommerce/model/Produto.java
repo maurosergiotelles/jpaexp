@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +22,11 @@ public class Produto {
     private Integer id;
     private String nome;
     private BigDecimal preco;
+
     private String descricao;
+
+    @ManyToMany
+    @JoinTable(name = "produto_categoria", joinColumns = @JoinColumn(name = "produto_id"),
+    inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+    private List<Categoria> categorias = new ArrayList<>();
 }
