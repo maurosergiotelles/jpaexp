@@ -29,8 +29,12 @@ class PedidoTest extends EntityManagerTest {
         endereco.setCidade("São Paulo");
         endereco.setUf("SP");
         endereco.setCep("04044001");
+
         pedido.setEndereco(endereco);
 
+        Cliente cliente = entityManager.find(Cliente.class, 1);
+
+        pedido.setCliente(cliente);
 
         EntityTransaction transaction = entityManager.getTransaction();
 

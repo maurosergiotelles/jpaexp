@@ -21,7 +21,7 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
@@ -31,7 +31,6 @@ public class Pedido {
     @Column(name = "data_conclusao")
     private LocalDateTime dataConclusao;
 
-
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
@@ -40,7 +39,7 @@ public class Pedido {
     @Embedded
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "pedido", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "pedido", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     private List<ItemPedido> itens = new ArrayList<>();
 
     public void addItem(ItemPedido itemPedido){
