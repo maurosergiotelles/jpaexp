@@ -7,35 +7,32 @@ import org.jpaexp.ecommerce.model.StatusPedido;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class GerenciamentoTransacoesTest extends EntityManagerTest {
+ public class GerenciamentoTransacoesFlushTest extends EntityManagerTest {
 
     @Test
     public void abrirFecharCancelarTransacao(){
-        Exception exception = assertThrows(Exception.class, () -> errorEsperado());
+        Assertions.assertThrows(Exception.class,  ()-> erroAoChamarFlush());
+    Assertions.
 
-        Assertions.assertEquals("Pedido ainda não foi pago.", exception.getMessage());
     }
 
-    private static void errorEsperado() {
+    private static void erroAoChamarFlush() {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
-            transaction.begin();
-            metodoDeNegocio();
+            Pedido pedido = entityManager.find(Pedido.class, 1);
+            pedido.setStatus(StatusPedido.PAGO);
+
+            entityManager.flush();// força para o banco sem transação
+
+            if (pedido.getPagamentoCartao() == null){
+                throw new RuntimeException("Pedido ainda não foi pago.");
+            }
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             throw e;
-        }
-    }
-
-    private static void metodoDeNegocio() {
-        Pedido pedido = entityManager.find(Pedido.class, 1);
-        pedido.setStatus(StatusPedido.PAGO);
-
-        if (pedido.getDataConclusao() == null){
-            throw new RuntimeException("Pedido ainda não foi pago.");
         }
     }
 }
