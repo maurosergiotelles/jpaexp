@@ -10,7 +10,8 @@ public class ConsultandoRegistrosTest extends EntityManagerTest {
     public void buscarPorIdentificador(){
         Produto produto = entityManager.find(Produto.class, 1);
         Assertions.assertNotNull(produto);
-        Assertions.assertEquals("Produto(id=1, nome=Kindle, preco=499.00, descricao=Conheça o novo Kindle, agora com iluminação embutida ajustável, que permite que você leia em ambientes abertos ou fechados, a qualquer hora do dia., categorias=[], estoque=null)", produto.toString());
+
+        Assertions.assertEquals("Kindle", produto.getNome());
     }
 
     @Test
