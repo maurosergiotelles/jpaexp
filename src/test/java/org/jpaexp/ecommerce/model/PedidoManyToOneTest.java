@@ -20,7 +20,6 @@ public class PedidoManyToOneTest extends EntityManagerTest {
 
         Pedido pedido = new Pedido();
 
-        pedido.setDataPedido(LocalDateTime.now());
         pedido.setStatus(StatusPedido.AGUARDANDO);
         pedido.setTotal(new BigDecimal("1000.99"));
         pedido.setCliente(cliente);

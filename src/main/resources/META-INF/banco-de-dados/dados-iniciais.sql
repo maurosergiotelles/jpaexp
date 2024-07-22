@@ -6,7 +6,7 @@ insert into cliente (nome, sexo) values ('Mauro', 'MASCULINO');
 insert into cliente (nome, sexo) values ('Beatriz', 'FEMININO');
 insert into cliente (nome, sexo) values ('Heitor', 'MASCULINO');
 
-insert into pedido (cliente_id, data_pedido, total, status) values (1, sysdate(), 100.0, 'AGUARDANDO');
+insert into pedido (cliente_id, data_criacao, total, status) values (1, sysdate(), 100.0, 'AGUARDANDO');
 
 insert into item_pedido (pedido_id, produto_id, preco_produto, quantidade) values (1, 1, 5.0, 2);
 

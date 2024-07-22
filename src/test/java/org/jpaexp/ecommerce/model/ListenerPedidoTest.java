@@ -5,9 +5,7 @@ import org.jpaexp.ecommerce.EntityManagerTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-public class CallBackPedidoTest extends EntityManagerTest {
+public class ListenerPedidoTest extends EntityManagerTest {
 
     @Test
     public void acionarCallbacks(){

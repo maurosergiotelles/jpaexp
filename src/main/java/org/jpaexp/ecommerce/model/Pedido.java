@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.jpaexp.ecommerce.listener.GerarNotaFiscalListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @Entity
+@EntityListeners({GerarNotaFiscalListener.class})
 @Table(name = "pedido")
 public class Pedido {
 
@@ -25,8 +27,13 @@ public class Pedido {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @Column(name = "data_pedido")
-    private LocalDateTime dataPedido;
+
+    @Column(name = "data_ultima_atualizacao")
+    private LocalDateTime dataUltimaAtualizacao;
+
+
+    @Column(name = "data_criacao")
+    private LocalDateTime dataCriacao;
 
     @Column(name = "data_conclusao")
     private LocalDateTime dataConclusao;
@@ -50,9 +57,53 @@ public class Pedido {
     @OneToOne(mappedBy = "pedido")
     private PagamentoCartao pagamentoCartao;
 
-
-
     @OneToOne(mappedBy = "pedido")
     private NotaFiscal notaFiscal;
+
+    @PrePersist
+    public void prePersistir(){
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>@PrePersist");
+        this.dataCriacao = LocalDateTime.now();
+        calcularTotal();
+    }
+    @PostPersist
+    public void postPersistir(){
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>@PostPersist");
+    }
+
+    @PreUpdate
+    public void preAtualizar(){
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>@PreUpdate");
+        this.dataUltimaAtualizacao = LocalDateTime.now();
+        calcularTotal();
+    }
+
+    @PostUpdate
+    public void postAtualizar(){
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>@PostUpdate");
+    }
+
+    @PreRemove
+    public void preRemove(){
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>@PreRemove");
+    }
+
+    @PostRemove
+    public void postRemove(){
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>@PostRemove");
+    }
+
+    @PostLoad
+    public void postLoad(){
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>@PostLoad");
+    }
+
+    public void calcularTotal(){
+        if(itens != null){
+            total = itens.stream().map(ItemPedido::getPrecoProduto)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        }
+    }
 
 }

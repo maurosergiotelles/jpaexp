@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
     @Test
     public void abrirFecharCancelarTransacao(){
         Assertions.assertThrows(Exception.class,  ()-> erroAoChamarFlush());
-    Assertions.
+
 
     }
 
